@@ -18,6 +18,7 @@ app.use(function(req, res, next) {
 
 require('./services/tweets-service')(app);
 require('./services/todos-service')(app);
+require('./services/movies-service')(app);
 
 app.get('/hello', (req, res) => {
   res.send('Hello World!');
