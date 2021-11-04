@@ -11,6 +11,20 @@ module.exports = (app) => {
         movies = movies.filter(m => m._id !== id);
         res.json(movies);
     };
+    const createMovie = (req, res) => {
+        const movie = req.body;
+        movies = [...movies, movie];
+        res.json(movies);
+    }
+    const updateMovie = (req, res) => {
+        const newMovie = req.body;
+        const movieId = req.params['mid'];
+        movies = movies.map(movie =>
+            movie._id === movieId ? newMovie : movie);
+        res.json(movies);
+    }
+app.put('/api/movies/:mid', updateMovie);
+    app.post('/api/movies', createMovie);
     app.delete('/api/movies/:mid', deleteMovie);
     app.get('/api/movies', getAllMovies);
 };
